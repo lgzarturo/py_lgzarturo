@@ -14,9 +14,9 @@
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
           <h4 class="text-white">{% trans 'Sobre mí' %}</h4>
-          <p class="text-muted">
+          <div class="text-muted">
             {{ profile.about_me|safe }}
-          </p>
+          </div>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">{% trans 'Contacto' %}</h4>
@@ -64,7 +64,7 @@
     {% for work in works %}
     <div class="blog-post">
       <h3 class="blog-post-title">{{ work.company }}</h3>
-      <p class="blog-post-meta">{{ work.start_date }} -  {% if work.is_actual %}{% trans 'Actual' %}{% else %}{{ work.end_field }}{% endif %}</p>
+      <p class="blog-post-meta">{{ work.start_date }} -  {% if work.is_actual %}{% trans 'Actual' %}{% else %}{{ work.end_date }}{% endif %}</p>
       <blockquote class="blockquote">
         <p class="mb-0">{{ work.position }}</p>
         <div class="blockquote-footer"><cite title="Source Title">{{ work.location }}</cite></div>
@@ -104,9 +104,9 @@
         {% for skill in skills %}
           <li class="pb-3" data-toggle="tooltip" data-placement="left" title="{{ skill.type.name }}">
             {{ skill.name }}
-            {% if skill.age > 0 %}
+            {% if skill.years > 0 %}
               <span class="badge badge-primary badge-pill float-right">
-                {{ skill.age }} {% if skill.age == 1 %}{% trans 'Año' %}{% else %}{% trans 'Años' %}{% endif %}
+                {{ skill.years }} {% if skill.years == 1 %}{% trans 'Año' %}{% else %}{% trans 'Años' %}{% endif %}
               </span>
             {% endif %}
             {% if skill.percentage > 0 %}

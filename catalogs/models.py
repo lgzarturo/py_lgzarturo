@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class Network(models.Model):
     name = models.CharField(max_length=255, db_index=True, verbose_name=_('Nombre de la red'))
-    icon = models.CharField(max_length=255, verbose_name=_('Icono'))
+    icon = models.CharField(max_length=32, verbose_name=_('Icono'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Fecha de creación'))
     updated = models.DateTimeField(auto_now=True, verbose_name=_('Última actualización'))
 
@@ -19,7 +19,7 @@ class Network(models.Model):
 class Company(models.Model):
     name = models.CharField(max_length=255, db_index=True, verbose_name=_('Nombre de la compañía'))
     description = models.TextField(verbose_name=_('Descripción'))
-    location = models.CharField(max_length=255, verbose_name=_('Ubicación'))
+    location = models.CharField(max_length=64, verbose_name=_('Ubicación'))
     website = models.URLField(verbose_name=_('Sitio web'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Fecha de creación'))
     updated = models.DateTimeField(auto_now=True, verbose_name=_('Última actualización'))
@@ -35,7 +35,7 @@ class Company(models.Model):
 class School(models.Model):
     name = models.CharField(max_length=255, db_index=True, verbose_name=_('Institución'))
     description = models.TextField(verbose_name=_('Descripción'))
-    location = models.CharField(max_length=255, verbose_name=_('Ubicación'))
+    location = models.CharField(max_length=64, verbose_name=_('Ubicación'))
     website = models.URLField(verbose_name=_('Sitio web'))
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('Fecha de creación'))
     updated = models.DateTimeField(auto_now=True, verbose_name=_('Última actualización'))

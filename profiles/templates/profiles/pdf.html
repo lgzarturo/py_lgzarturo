@@ -113,7 +113,7 @@
         <div>
           <h3>{{ work.company }}</h3>
           <h5>{{ work.position }} - <i>{{ work.location }}</i></h5>
-          <span>{{ work.start_date }} - {% if work.is_actual %}{% trans 'Actual' %}{% else %}{{ work.end_field }}{% endif %}</span><br>
+          <span>{{ work.start_date }} - {% if work.is_actual %}{% trans 'Actual' %}{% else %}{{ work.end_date }}{% endif %}</span><br>
 
           {{ work.description|safe }}
         </div><!-- /.blog-post -->
@@ -133,8 +133,8 @@
         <h2>{% trans 'Habilidades' %}</h2>
         {% for skill in skills %}
           {{ skill.type.name }}<strong>: {{ skill.name }}</strong>&nbsp;
-          ({% if skill.age > 0 %}{{ skill.age }}
-          {% if skill.age == 1 %}{% trans 'Año' %}{% else %}{% trans 'Años' %}{% endif %}{% endif %}
+          ({% if skill.years > 0 %}{{ skill.years }}
+          {% if skill.years == 1 %}{% trans 'Año' %}{% else %}{% trans 'Años' %}{% endif %}{% endif %}
           {% if skill.percentage > 0 %} - {{ skill.percentage }}%{% endif %})<br>
         {% endfor %}
 

@@ -4,9 +4,11 @@
 {% block title %}{% trans 'Artículos' %}{% endblock %}
 
 {% block content %}
+
 <div class="row" id="profile">
+  {% if articles %}
   <div class="col-md-8">
-    {% if articles %}
+
     {% for article in articles %}
     <div class="blog-post">
       <h2 class="blog-post-title">
@@ -45,9 +47,7 @@
         {% endif %}
       </span>
     </div>
-    {% else %}
-      {% include "snippets/not_found.html" with message='No se han encontrado artículos' %}
-    {% endif %}
+
   </div><!-- /.blog-main -->
 
   <aside class="col-md-4 blog-sidebar">
@@ -73,6 +73,8 @@
       </ol>
     </div>
   </aside><!-- /.blog-sidebar -->
-
+  {% else %}
+    {% include "snippets/not_found.html" with message='No se han encontrado artículos' %}
+  {% endif %}
 </div>
 {% endblock %}

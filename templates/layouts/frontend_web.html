@@ -21,7 +21,7 @@
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
         <i class="fas fa-mug-hot fa-lg"></i>&nbsp;
-        <strong>lgzarturo.com</strong>
+        <strong>WebDeveloper&lt;hints&gt;</strong>
       </a>
     </div>
   </div>
@@ -35,19 +35,19 @@
         <a class="nav-link{% if request.path == '/' %} active{% endif %}" href="{% url 'index' %}">Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link{% if '/projects/' in request.path %} active{% endif %}" href="{% url 'projects' %}">Proyectos</a>
+        <a class="nav-link{% if '/blog/' in request.path %} active{% endif %}" href="{% url 'blog' %}">Blog</a>
       </li>
       <li class="nav-item">
         <a class="nav-link{% if '/profile/' in request.path %} active{% endif %}" href="{% url 'profile' %}">Perfil profesional</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link{% if '/blog/' in request.path %} active{% endif %}" href="{% url 'blog' %}">Blog</a>
-      </li>
+        <a class="nav-link{% if '/projects/' in request.path %} active{% endif %}" href="{% url 'projects' %}">Proyectos</a>
+      </li>     
     </ul>
   </div>
 </nav>
 
-<main role="main" class="{% if request.path == '/projects/' %}container-fluid{% else %}container{% endif %}">
+<main role="main" class="container">
   {% block content %}{% endblock %}
 </main>
 

@@ -7,7 +7,7 @@ from profiles.models import Profile
 class Project(models.Model):
     slug = models.SlugField(unique=True, verbose_name=_('Identificador'))
     title = models.CharField(max_length=255, unique=True, verbose_name=_('Título'))
-    excerpt = models.CharField(max_length=140, blank=True, verbose_name=_('Resumen'))
+    excerpt = models.CharField(max_length=140, null=True, blank=True, verbose_name=_('Resumen'))
     thumbnail = models.ImageField(upload_to='thumbs', null=True, blank=True, verbose_name=_('Portada'),
                                   help_text=_('La imagen debe tener una proporción 1:1, de preferencia 500x500'))
     content = models.TextField(verbose_name=_('Descripción'))
