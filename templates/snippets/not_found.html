@@ -1,0 +1,11 @@
+{% load i18n %}
+<div class="col-md-12 jumbotron bg-light rounded">
+  <h1 class="display-4">404!</h1>
+  <p class="lead">
+    {% trans message %}
+  </p>
+  <hr class="my-4">
+  <p>{% trans 'Puedes seguir navegando en el sitio, enlaces recomendados:' %}</p>
+  <a class="btn btn-primary" href="{% url 'profile' %}" role="button">{% trans 'Perfil profesional' %}</a>
+      <a class="btn btn-primary" href="{% url 'blog' %}" role="button">{% trans 'Artículos de tecnología' %}</a>
+</div>

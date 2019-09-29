@@ -1,0 +1,151 @@
+{% load static i18n %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Perfil profesional {{ profile }}</title>
+  <style type="text/css">
+    @page {
+        size: letter;
+        margin: 1cm;
+    }
+    body {
+        font-size: 8pt;
+    }
+    p {
+      margin: 0 0 10pt 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .list-group {
+        display: block;
+        width: 100%;
+        list-style: none;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .list-group p {
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+        list-style: none;
+        font-size: 1.1em;
+    }
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 5px;
+        background-color: #fff;
+        border: none;
+        height: 980px;
+    }
+    .sidebar {
+        background-color: #999999;
+        color: #fff;
+        vertical-align: top;
+    }
+    .content {
+      vertical-align: top;
+      padding: 10px;
+    }
+    h1, h2, h3, h4, h5 {
+      margin: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      line-height: 1em;
+    }
+    h1 {
+      font-size: 20pt;
+      font-weight: lighter;
+    }
+    h2 {
+      font-size: 15pt;
+      border-bottom: 1px solid #e5e5e5;
+      margin-bottom: 10pt;
+      margin-top: 10pt;
+      font-weight: lighter;
+    }
+    h3 {
+      font-size: 12pt;
+    }
+    h4 {
+      font-size: 10pt;
+      margin-bottom: 20pt;
+    }
+    h5 {
+      margin-top: 10pt;
+      font-size: 8pt;
+      font-weight: bolder;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <table class="table">
+    <tr>
+      <td width="260" class="sidebar" style="vertical-align: top;">
+        <img src="http://localhost:8000{{ profile.photo.url }}" alt="{{ profile }}"/>
+        <div class="content">
+          <strong>{% trans 'Fecha' %}:</strong> {{ today | date:"d/m/Y" }}<br>
+          <strong>{% trans 'Correo electrónico' %}:</strong> {{ profile.email }}<br>
+          <strong>{% trans 'Teléfono' %}:</strong> {{ profile.phone }}<br>
+          <strong>{% trans 'Sitio web' %}:</strong> {{ profile.website }}<br>
+          <strong>{% trans 'Ubicación' %}:</strong> {{ profile.location }} CP {{ profile.postal_code }}<br>
+          <strong>{% trans 'Cumpleaños' %}:</strong> {{ profile.birth_date }}
+          <div>
+            <strong>{% trans 'Sobre mí' %}</strong><br>
+            {{ profile.about_me|safe }}
+          </div>
+        </div>
+      </td>
+      <td class="content" style="vertical-align: top;">
+        <h1>{{ profile }}</h1>
+        <h4>{{ profile.profession }}</h4>
+
+        <h2>{% trans 'Objetivo' %}</h2>
+        <p>
+          {{ profile.summary }}
+        </p>
+
+        <h2>{% trans 'Experiencia laboral' %}</h2>
+        {% for work in works %}
+        <div>
+          <h3>{{ work.company }}</h3>
+          <h5>{{ work.position }} - <i>{{ work.location }}</i></h5>
+          <span>{{ work.start_date }} - {% if work.is_actual %}{% trans 'Actual' %}{% else %}{{ work.end_field }}{% endif %}</span><br>
+
+          {{ work.description|safe }}
+        </div><!-- /.blog-post -->
+        {% endfor %}
+
+        <h2>{% trans 'Educación' %}</h2>
+        {% for education in educations %}
+        <div>
+          <h3>{{ education.certification }}</h3>
+          <span>
+            {{ education.school }}&nbsp;
+            ({{ education.start_year }} -  {% if education.is_actual %}{% trans 'Cursando' %}{% else %}{{ education.end_year }}{% endif %})
+          </span>
+        </div><!-- /.blog-post -->
+        {% endfor %}
+
+        <h2>{% trans 'Habilidades' %}</h2>
+        {% for skill in skills %}
+          {{ skill.type.name }}<strong>: {{ skill.name }}</strong>&nbsp;
+          ({% if skill.age > 0 %}{{ skill.age }}
+          {% if skill.age == 1 %}{% trans 'Año' %}{% else %}{% trans 'Años' %}{% endif %}{% endif %}
+          {% if skill.percentage > 0 %} - {{ skill.percentage }}%{% endif %})<br>
+        {% endfor %}
+
+        <h2>{% trans 'Redes sociales' %}</h2>
+        {% for social_network in social_networks %}
+          <strong>{{ social_network.name }}</strong> - {{ social_network.url }}<br>
+        {% endfor %}
+      </td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

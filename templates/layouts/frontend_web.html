@@ -1,0 +1,69 @@
+{% load static staticfiles %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% block meta %}{% endblock %}
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather|Raleway&display=swap" rel="stylesheet">
+  <link href="{% static "css/main.css" %}" rel="stylesheet">
+  {% block style %}{% endblock %}
+</head>
+<body>
+
+<header class="shadow">
+  {% block header %}
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <i class="fas fa-mug-hot fa-lg"></i>&nbsp;
+        <strong>lgzarturo.com</strong>
+      </a>
+    </div>
+  </div>
+  {% endblock %}
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow mb-5" style="background-color: #00adff !important;">
+  <div class="collapse navbar-collapse container" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link{% if request.path == '/' %} active{% endif %}" href="{% url 'index' %}">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if '/projects/' in request.path %} active{% endif %}" href="{% url 'projects' %}">Proyectos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if '/profile/' in request.path %} active{% endif %}" href="{% url 'profile' %}">Perfil profesional</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link{% if '/blog/' in request.path %} active{% endif %}" href="{% url 'blog' %}">Blog</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main role="main" class="{% if request.path == '/projects/' %}container-fluid{% else %}container{% endif %}">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="text-muted border-top">
+  <div class="container">
+    <p class="float-right">
+      <a href="#">Back to top</a>
+    </p>
+    <p><a href="https://www.linkedin.com/in/lgzarturo" target="_blank">Arturo López</a> - 2019 &copy; Todos los derechos reservados </p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/6c5624c2fb.js" crossorigin="anonymous"></script>
+<script src="{% static 'js/main.js' %}" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'layouts/frontend_web.html' %}
+{% load i18n static staticfiles %}
+
+{% block title %}{% trans 'Artículos' %}{% endblock %}
+
+{% block content %}
+<div class="row" id="profile">
+  <div class="col-md-12">
+    <div class="blog-post">
+      <h2 class="blog-post-title">{{ article.title }}</h2>
+      <p class="blog-post-meta">{{ article.created }} - <strong>{{ article.author }}</strong></p>
+
+      {% if article.thumbnail %}
+        <img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article }}">
+      {% endif %}
+    
+      <blockquote>
+        {{ article.excerpt }}
+      </blockquote>
+      <p>
+        {{ article.content|safe }}
+      </p>
+    </div>
+  </div><!-- /.blog-main -->
+  <a href="{% url 'blog' %}" class="btn btn-secondary">
+    <i class="fas fa-arrow-left"></i>&nbsp;{% trans 'Regresar' %}
+  </a>
+</div>
+{% endblock %}

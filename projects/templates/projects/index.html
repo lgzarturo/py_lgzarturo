@@ -1,0 +1,66 @@
+{% extends 'layouts/frontend_web.html' %}
+{% load i18n static staticfiles %}
+
+{% block title %}{% trans 'Proyectos' %}{% endblock %}
+
+{% block content %}
+{% if projects %}
+<div>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">{% trans 'Proyectos profesionales' %}</h1>
+      <p class="lead text-muted">
+        {% trans 'En esta sección se listan los proyectos en los que he trabajado e ideas en desarrollo.' %}
+      </p>
+      <p>
+        <a href="{% url 'profile' %}" class="btn btn-primary my-2">{% trans 'Perfil profesional' %}</a>
+        <a href="{% url 'blog' %}" class="btn btn-secondary my-2">{% trans 'Artículos' %}</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="album py-5">
+    <div class="container">
+      <div class="row">
+        {% for project in projects %}
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              {% if project.thumbnail %}
+                <img src="{{ project.thumbnail.url }}" class="bd-placeholder-img card-img-top" width="100%" height="225" />
+              {% else %}
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{ project.created }}</text></svg>
+              {% endif %}
+              <div class="card-body">
+                <p class="card-text">
+                  {% if project.excerpt %}
+                    {{ project.excerpt }}
+                  {% else %}
+                    {{ project.content|safe|truncatewords:20 }}
+                  {% endif %}
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="{% url 'projects_show' project.slug %}" class="btn btn-sm btn-outline-secondary">{% trans 'Ver más' %}</a>
+                  </div>
+                  <small class="text-muted">
+                    {% if project.time_read < 1 %}
+                      {% trans 'Menos de 1 minuto' %}
+                    {% elif project.time_read == 1 %}
+                      {% trans 'Un minuto' %}
+                    {% else %}
+                      {{ project.time_read }} {% trans 'minutos' %}
+                    {% endif %}
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% else %}
+  {% include "snippets/not_found.html" with message='No se han encontrado proyectos' %}
+{% endif %}
+</div>
+{% endblock %}
