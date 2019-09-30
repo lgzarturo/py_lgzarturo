@@ -21,9 +21,9 @@
       <blockquote class="text-center mt-3 mb-5">
         {{ article.excerpt }}
       </blockquote>
-      <p>
+      <div id="html-content">
         {{ article.content|safe }}
-      </p>
+      </div>
     </div>
   </div><!-- /.blog-main -->
   <a href="{% url 'blog' %}" class="btn btn-secondary">

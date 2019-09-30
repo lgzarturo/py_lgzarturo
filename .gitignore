@@ -197,3 +197,4 @@ fabric.properties
 **/media/photos
 **/media/thumbs
 .DS_Store
+django-summernote
