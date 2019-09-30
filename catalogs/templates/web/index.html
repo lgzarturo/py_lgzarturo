@@ -8,16 +8,16 @@
 {% endblock %}
 
 {% block content %}
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-toggle="carousel">
     <ol class="carousel-indicators">
       {% for article in articles %}
-      <li data-target="#myCarousel" data-slide-to="{{ article.id }}" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="{{ article.id }}"{% if forloop.first %} class="active"{% endif %}></li>
       {% endfor %}
     </ol>
     <div class="carousel-inner">
 
       {% for article in articles %}
-      <div class="carousel-item active">
+      <div class="carousel-item{% if forloop.first %} active{% endif %}">
         {% if article.thumbnail %}
           <img src="{{ article.thumbnail.url }}" class="bd-placeholder-img rounded" width="100%" height="100%" alt="{{ article.title }} - {{ article.author }}">
         {% else %}
