@@ -1,7 +1,7 @@
 {% extends 'layouts/frontend_web.html' %}
 {% load i18n static staticfiles %}
 
-{% block title %}{% trans 'Artículos' %}{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
 <div class="row" id="profile">
@@ -14,7 +14,7 @@
         <img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article }}">
       {% endif %}
     
-      <blockquote>
+      <blockquote class="text-center mt-3 mb-5">
         {{ article.excerpt }}
       </blockquote>
       <p>

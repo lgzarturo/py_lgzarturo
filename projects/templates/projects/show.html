@@ -1,7 +1,7 @@
 {% extends 'layouts/frontend_web.html' %}
 {% load i18n static staticfiles %}
 
-{% block title %}{% trans 'Artículos' %}{% endblock %}
+{% block title %}{{ project.title }}{% endblock %}
 
 {% block content %}
 <div class="row" id="profile">
