@@ -102,7 +102,7 @@
       <td class="content" style="vertical-align: top;">
         <h1>{{ profile }}</h1>
 
-        <h4>{{ profile.profession }}</h4>
+        <h4>{{ profile.profession }} - {{ profile.title }}</h4>
 
         <h2>{% trans 'Objetivo' %}</h2>
         <p>
@@ -115,7 +115,6 @@
           <h3>{{ work.company }}</h3>
           <h5>{{ work.position }} - <i>{{ work.location }}</i></h5>
           <span>{{ work.start_date }} - {% if work.is_actual %}{% trans 'Actual' %}{% else %}{{ work.end_date }}{% endif %}</span><br>
-
           {{ work.description|safe }}
         </div><!-- /.blog-post -->
         {% endfor %}
@@ -123,10 +122,11 @@
         <h2>{% trans 'Educación' %}</h2>
         {% for education in educations %}
         <div>
-          <h3>{{ education.certification }}</h3>
+          <h3>{{ education.school }}</h3>
           <span>
-            {{ education.school }}&nbsp;
-            ({{ education.start_year }} -  {% if education.is_actual %}{% trans 'Cursando' %}{% else %}{{ education.end_year }}{% endif %})
+            {{ education.certification }}&nbsp;
+            ({{ education.start_year }} -  {% if education.is_actual %}{% trans 'Cursando' %}{% else %}{{ education.end_year }}{% endif %})&nbsp;
+            {% if education.description %}{{ education.description }}{% endif %}
           </span>
         </div><!-- /.blog-post -->
         {% endfor %}

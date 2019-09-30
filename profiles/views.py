@@ -9,10 +9,10 @@ from .models import Profile, Work, Education, Skill
 
 def index(request):
     profile = get_object_or_404(Profile, pk=1)
-    works = Work.objects.filter(profile=profile)
-    educations = Education.objects.filter(profile=profile)
-    skills = Skill.objects.filter(profile=profile)
-    social_networks = SocialNetwork.objects.filter(profile=profile)
+    works = Work.objects.filter(profile=profile).order_by('created', 'is_actual')
+    educations = Education.objects.filter(profile=profile).order_by('created')
+    skills = Skill.objects.filter(profile=profile).order_by('created')
+    social_networks = SocialNetwork.objects.filter(profile=profile).order_by('created')
     context = {
         'profile': profile,
         'works': works,
@@ -27,10 +27,10 @@ class Pdf(View):
 
     def get(self, request):
         profile = get_object_or_404(Profile, pk=1)
-        works = Work.objects.filter(profile=profile)
-        educations = Education.objects.filter(profile=profile)
-        skills = Skill.objects.filter(profile=profile)
-        social_networks = SocialNetwork.objects.filter(profile=profile)
+        works = Work.objects.filter(profile=profile).order_by('created', 'is_actual')
+        educations = Education.objects.filter(profile=profile).order_by('created')
+        skills = Skill.objects.filter(profile=profile).order_by('created')
+        social_networks = SocialNetwork.objects.filter(profile=profile).order_by('created')
         today = timezone.now()
         photo_url = request.build_absolute_uri(profile.photo.url)
         params = {

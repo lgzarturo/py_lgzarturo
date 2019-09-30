@@ -55,6 +55,7 @@ class Work(models.Model):
 class Education(models.Model):
     school = models.ForeignKey(School, on_delete=models.SET_NULL, null=True, verbose_name=_('Institución'))
     certification = models.CharField(max_length=64, verbose_name=_('Título o certificado'))
+    description = models.TextField(null=True, blank=True, verbose_name=_('Descripción'))
     start_year = models.PositiveSmallIntegerField(default=0, verbose_name=_('Año de inicio'))
     end_year = models.PositiveSmallIntegerField(default=0, blank=True, verbose_name=_('Año de egreso'))
     is_actual = models.BooleanField(default=False, verbose_name=_('Cursando'))
