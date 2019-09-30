@@ -85,7 +85,7 @@
   <table class="table">
     <tr>
       <td width="260" class="sidebar" style="vertical-align: top;">
-        <img src="http://localhost:8000{{ profile.photo.url }}" alt="{{ profile }}"/>
+        <img src="{{ photo_url }}" alt="{{ profile }}"/>
         <div class="content">
           <strong>{% trans 'Fecha' %}:</strong> {{ today | date:"d/m/Y" }}<br>
           <strong>{% trans 'Correo electrónico' %}:</strong> {{ profile.email }}<br>
@@ -101,6 +101,7 @@
       </td>
       <td class="content" style="vertical-align: top;">
         <h1>{{ profile }}</h1>
+
         <h4>{{ profile.profession }}</h4>
 
         <h2>{% trans 'Objetivo' %}</h2>

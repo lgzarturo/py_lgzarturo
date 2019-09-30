@@ -32,6 +32,7 @@ class Pdf(View):
         skills = Skill.objects.filter(profile=profile)
         social_networks = SocialNetwork.objects.filter(profile=profile)
         today = timezone.now()
+        photo_url = request.build_absolute_uri(profile.photo.url)
         params = {
             'today': today,
             'profile': profile,
@@ -39,6 +40,7 @@ class Pdf(View):
             'educations': educations,
             'skills': skills,
             'social_networks': social_networks,
-            'request': request
+            'request': request,
+            'photo_url': photo_url,
         }
         return Render.render('profiles/pdf.html', params)
