@@ -37,7 +37,11 @@ def category_article(request, slug):
 
 def show(request, slug):
     article = get_object_or_404(Article, slug=slug)
+    absolute_url = request.build_absolute_uri("%s/%s" % ('blog', article.slug))
+    thumbnail_url = request.build_absolute_uri(article.thumbnail.url)
     context = {
-        'article': article
+        'article': article,
+        'absolute_url': absolute_url,
+        'thumbnail_url': thumbnail_url,
     }
     return render(request, 'articles/show.html', context)

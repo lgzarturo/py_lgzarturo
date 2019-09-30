@@ -3,6 +3,10 @@
 
 {% block title %}{{ article.title }}{% endblock %}
 
+{% block meta %}
+  {% include 'snippets/meta_tags.html' with url=absolute_url title=article.title description=article.excerpt photo=thumbnail_url %}
+{% endblock %}
+
 {% block content %}
 <div class="row" id="profile">
   <div class="col-md-12">
