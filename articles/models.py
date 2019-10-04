@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from profiles.models import Profile
@@ -32,6 +33,9 @@ class Article(models.Model):
 
     def time_read(self):
         return "%s" % (len(self.content.split()) / 200)
+
+    def get_absolute_url(self):
+        return reverse("blog_show", args=[self.slug])
 
     def __str__(self):
         return "%s" % self.title

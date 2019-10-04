@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from profiles.models import Profile
@@ -17,6 +18,9 @@ class Project(models.Model):
 
     def time_read(self):
         return round(len(self.content.split()) / 200, 2)
+
+    def get_absolute_url(self):
+        return reverse("projects_show", args=[self.slug])
 
     def __str__(self):
         return "%s" % self.title
