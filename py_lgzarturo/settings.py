@@ -11,6 +11,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'django_summernote',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -22,7 +23,6 @@ INSTALLED_APPS = [
     'leads.apps.LeadsConfig',
     'articles.apps.ArticlesConfig',
     'projects.apps.ProjectsConfig',
-    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -59,8 +59,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'webdeveloperhints',
-        'USER': 'lgzarturo',
-        'PASSWORD': '',
+        'USER': 'r2d2',
+        'PASSWORD': 'r2d2',
         'HOST': 'localhost',
         'PORT': '5432',
     }
